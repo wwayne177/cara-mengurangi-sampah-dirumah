@@ -1,0 +1,40 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hi! I am a bot {bot.user}!')
+
+@bot.command()
+async def heh(ctx, count_heh = 10):
+    await ctx.send("he" * count_heh)
+
+@bot.command()
+async def cara_mengurangi_sampah_di_rumah(ctx):
+    await ctx.send('''
+1 Gunakan kantung kain, bukan kantung plastik.
+2 Lebih baik, belilah makanan tanpa/dengan sedikit kemasan.
+3 Jangan gunakan minuman kemasan kecuali Anda terpaksa.
+4 Kurangi penggunaan kertas''')
+
+@bot.command()
+async def mem(ctx):
+    with open('images/slide2.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+
+
+bot.run("MTE1OTc4OTIxMTIxODYxMjMzNA.GPNCqV.J-xZQ4ff3uBsWXXH7ZvMjRtZNEuYyCoqWUhAtM")
+
